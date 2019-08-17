@@ -2,48 +2,85 @@ const db = require('../data/db-config.js');
 
 module.exports = {
     find, 
-    findById, 
-    //findResources, 
-    // findProjects, 
-     add, 
-    // addResource,
-    // addProject,
-    // update, 
-    // remove
+    findProjectById,
+    add, 
+    findTasks, 
+    findTasksById,
+    addTask,
+    findResources,
+    findResourcesById, 
+    addResource,
+
 }
 
+///////////////////////////
+//Projects///////////////
 function find() {
-    console.log("hit")
     return db('projects')
 }
 
-function findById(id) {
+function findProjectById(id) {
     return db('projects')
     .where({id})
     .first()
 }
 
-// function findResources(scheme_id) {
-//     return db('resources as re')//step
-//     .join('schemes as sc', 'sc.id', 're.scheme_id')//scheme
-//     .select('st.id', 'sc.scheme_name', 'st.instructions')
-//     .where({scheme_id})
-// }
 
 async function add(project) {
-    console.log("hit")
     const [id] = await db('projects').insert(project)
-    return findById(id)
+    response = findProjectById(id)
+    if(response.completed === 1) {
+        response.completed = true
+        return response
+    } else {
+        response.completed = false
+        return response
+    }
+}
+///////////////////////////// 
+
+
+/////////////////////
+//Tasks/////////////
+function findTasks() {
+    return db('tasks')
 }
 
-async function update(change, id) {
-    await db('schemes')
+function findTasksById(id) {
+    return db('tasks')
     .where({id})
-    .update(change);
+    .first()
 }
 
-function remove(id) {
-    return db('schemes')
-    .where({id})
-    .del();
+async function addTask(task) {
+    console.log(task)
+    const [id] = await db('tasks').insert(task)
+    response = findTasksById(id)
+    if(response.completed === 1) {
+        response.completed = true
+        return response
+    } else {
+        response.completed = false
+        return response
+    }
 }
+///////////////////////
+
+
+/////////////////////
+//Resources/////////////
+function findResources() {
+    return db('resources')
+}
+
+function findResourcesById(id) {
+    return db('resources')
+    .where({id})
+    .first()
+}
+
+async function addResource(resource) {
+    const [id] = await db('resources').insert(resource)
+    return findResourcesById(id)
+}
+///////////////////////
