@@ -12,7 +12,7 @@ This is an individual assessment, please work on it alone. It is an opportunity 
 
 If the instructions are not clear, please seek support from your TL and Instructor on Slack.
 
-The Minimum Viable Product must be completed in three hours.
+The Minimum Viable Product must be completed in three hours..
 
 Follow these steps to set up and work on your project:
 
@@ -40,11 +40,19 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+SQL is the language you use to communicae with the DB. Relational Databases are the actual database that can be linked to another. 
+
 - [ ] Why do tables need a `primary key`?
+
+Primary Key is a unique key that is normally used as the identifer. Its a constant used to ensure we anways know a way to pull data. 
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+Foreign key
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+Typically you need a 3rd table that will have colums composed of ids from the 2 origional tables.
 
 ## Minimum Viable Product
 
